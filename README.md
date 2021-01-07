@@ -33,9 +33,10 @@ version                        show version of detectify-cli
 [--raw]                        show raw JSON response
 
 domains [--status=*]           list all domains, statuses: verified/unverified
+listreports <pofile>           list reports on profile
 profiles                       list all profiles
 profiles <domain>              list profiles for the domain
+report <pofile>                report from scan
 start <profile>                start a scan on the profile
 stop <profile>                 stop a scan on the profile
 status <profile>               status of the current scan
-```
