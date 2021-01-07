@@ -1,5 +1,6 @@
 # Detectify.sh
 Upgraded shell script for detectify-cli
+starts, stops, and gets reports
 
 # detectify-cli 1.0
 
