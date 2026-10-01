@@ -25,52 +25,56 @@ _command="${1-help}"
 _api_url="https://api.detectify.com/rest/v2"
 
 domains_args () {
-  while [ $# -gt 1 ]; do
-  case "$2" in
-    --raw)
-      _raw="1"
-      ;;
-    --status)
-      shift
-      _status="${2}"
-      ;;
-    --status=*)
-      _status="${2#*=}"
-      ;;
-    *)
-      ;;
+  [ "${1:-}" = "${_command}" ] && shift
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --raw)
+        _raw="1"
+        ;;
+      --status)
+        shift
+        [ $# -gt 0 ] || die 'error: missing value for --status'
+        _status="${1}"
+        ;;
+      --status=*)
+        _status="${1#*=}"
+        ;;
+      *)
+        ;;
     esac
     shift
   done
 }
 
 profiles_args () {
-  while [ $# -gt 1 ]; do
-  case "$2" in
-    --raw)
-      _raw="1"
-      ;;
-    *)
-    if [ "${_client}" == "" ]; then
-        _client="$2"
-      fi
-      ;;
+  [ "${1:-}" = "${_command}" ] && shift
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --raw)
+        _raw="1"
+        ;;
+      *)
+        if [ "${_client}" == "" ] && [[ "$1" != --* ]]; then
+          _client="$1"
+        fi
+        ;;
     esac
     shift
   done
 }
 
 status_args () {
-  while [ $# -gt 1 ]; do
-  case "$2" in
-    --raw)
-      _raw="1"
-      ;;
-    *)
-    if [ "${_profile}" == "" ]; then
-        _profile="$2"
-      fi
-      ;;
+  [ "${1:-}" = "${_command}" ] && shift
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --raw)
+        _raw="1"
+        ;;
+      *)
+        if [ "${_profile}" == "" ] && [[ "$1" != --* ]]; then
+          _profile="$1"
+        fi
+        ;;
     esac
     shift
   done
