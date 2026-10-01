@@ -54,7 +54,7 @@ profiles_args () {
         _raw="1"
         ;;
       *)
-        if [ "${_client}" == "" ] && [[ "$1" != --* ]]; then
+        if [ "${_client}" = "" ] && [ "${1#--}" = "$1" ]; then
           _client="$1"
         fi
         ;;
@@ -71,7 +71,7 @@ status_args () {
         _raw="1"
         ;;
       *)
-        if [ "${_profile}" == "" ] && [[ "$1" != --* ]]; then
+        if [ "${_profile}" = "" ] && [ "${1#--}" = "$1" ]; then
           _profile="$1"
         fi
         ;;
